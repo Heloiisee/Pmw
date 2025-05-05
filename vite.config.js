@@ -9,11 +9,8 @@ export default defineConfig({
                 'resources/js/app.js',
             ],
             refresh: true,
+            buildDirectory: 'build', // 🔧 Important pour placer manifest.json au bon endroit
         }),
     ],
-    build: {
-        manifest: true,
-        outDir: 'public/build',
-    },
-    base: '/build/', // 🔧 Ajoute ce préfixe pour générer des URLs relatives correctes
+    base: '/build/', // ✅ Pour que les URLs des assets soient correctes
 });
