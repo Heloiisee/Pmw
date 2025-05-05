@@ -18,8 +18,7 @@ RUN apt-get update && apt-get install -y \
     ghostscript \
     poppler-utils \
     wkhtmltopdf \
-    nodejs \
-    npm \
+    gnupg \
     && docker-php-ext-install \
         pdo \
         pdo_pgsql \
@@ -29,28 +28,35 @@ RUN apt-get update && apt-get install -y \
         pcntl \
         intl
 
+# 📦 Installer Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs
+
 # 🧰 Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # 📁 Répertoire de travail
 WORKDIR /var/www
 
-# 📁 Copier le reste du projet
+# 📁 Copier les fichiers
 COPY . .
 
-# 🔁 Pré-copie pour cache Composer
-COPY composer.json composer.lock ./
+# 🧶 Installer les dépendances PHP
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-
-# 🧶 Installer les dépendances front + compiler Vite
+# 🧶 Installer les dépendances JS et compiler Vite
 RUN npm install
 RUN npm run build
 
+# 🔐 Cacher les configurations Laravel (clé + cache)
+RUN php artisan key:generate && \
+    php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache
 
-# 🗂️ Donner les droits nécessaires
+# 🔓 Permissions
 RUN chown -R www-data:www-data /var/www && \
     chmod -R 755 /var/www/storage
 
-# 🚀 Commande de démarrage
+# 🚀 Lancer Laravel
 CMD sh -c "php artisan migrate --force || echo 'Migration failed' && php artisan serve --host=0.0.0.0 --port=8000"
