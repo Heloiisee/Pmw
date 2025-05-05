@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Portfolio')</title>
 
-    @vite(['resources/sass/styles.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 
     <!-- FontAwesome -->
