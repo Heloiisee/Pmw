@@ -1,0 +1,16 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app-C-jP6j3P.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/styles-tj3nLaTZ.css"
+    ]
+  },
+  "resources/sass/styles.scss": {
+    "file": "assets/styles-tj3nLaTZ.css",
+    "src": "resources/sass/styles.scss",
+    "isEntry": true
+  }
+}
