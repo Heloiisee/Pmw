@@ -1,4 +1,4 @@
-# 📦 Base PHP CLI
+# 📦 Base PHP CLI 
 FROM php:8.2-cli
 
 # 🧰 Dépendances système
@@ -28,10 +28,6 @@ RUN apt-get update && apt-get install -y \
         pcntl \
         intl
 
-# 📦 Installer Node.js 20
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
-
 # 🧰 Installer Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -45,11 +41,7 @@ COPY .env.example .env
 # 🧶 Installer les dépendances PHP
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# 🧶 Installer les dépendances JS et compiler Vite
-RUN npm install
-RUN npm run build
-
-# 🔐 Cacher les configurations Laravel (clé + cache)
+# 🔐 Générer la clé et cacher les configurations Laravel
 RUN php artisan key:generate && \
     php artisan config:cache && \
     php artisan route:cache && \
