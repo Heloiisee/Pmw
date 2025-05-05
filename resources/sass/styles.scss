@@ -1,0 +1,1017 @@
+/* Variables utiles pour le site*/
+
+// Importation des polices
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+//Couleurs du site
+$color-primary: #2A3F30;
+$color-secondary: #fcfcfe;
+$color-tertiary: #EEF7EE;
+
+// Polices et tailles des textes
+$font-primary: 'Poppins', sans-serif;
+$spacing-medium: 1.1rem; // Espacement moyen
+$font-size-tiny: 1.2rem;
+$font-size-small: 1.4rem;
+$font-size-medium: 1.6rem;
+$font-size-large: 2.4rem;
+$font-size-xlarge: 3.2rem;
+
+// Variables complémentaires pour le design
+$card-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+$card-hover-scale: 1.05;
+$card-border-radius: 12px;
+$title-font-size: 1.2rem;
+$text-font-size: 1rem;
+$text-color: #ddd; // Gris clair pour le contraste
+$btn-hover-scale: 1.05;
+
+// Css de base
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: $font-primary;
+}
+body{
+    background-color: $color-secondary;
+}
+
+// Navbar
+#header {
+    .navbar-brand {
+        font-size: $font-size-medium;
+        font-weight: 600;
+        color: $color-primary;
+    }
+
+    .nav-item {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: $color-primary;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        .nav-link {
+            font-size: $font-size-tiny;
+            font-weight: 500;
+            color: $color-primary;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+                color: darken($color-primary, 10%);
+            }
+        }
+
+        &.active .nav-link {
+            font-weight: bold;
+            color: $color-primary;
+        }
+    }
+
+    .navbar-toggler {
+        border: none;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+
+    // Responsive : centrer le menu sur mobile
+    .navbar-nav {
+        @media (max-width: 992px) {
+            text-align: center;
+        }
+    }
+}
+
+// Section Heading
+.heading{
+    text-align: center;
+    margin: 2rem 0;
+    height: 80vh;
+    .images_heading{
+        width:100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+        
+    }
+}
+
+// Section Introduction
+
+.introduction{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        font-size: $font-size-xlarge;
+        color : $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    hr{
+        color: $color-primary;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+        
+    }
+}
+
+// Sections Projets
+
+.projets{
+    min-height: 100vh;
+    background-color: $color-primary;
+    border-radius: 10% 10% 0 0;
+    h1{
+        color: $color-secondary;
+        margin-bottom: 1.5rem;
+    }
+    hr{
+        color: $color-secondary;
+    }
+    .card {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        margin-bottom: 20px;
+        box-shadow: $card-shadow;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        border-radius: $card-border-radius;
+        overflow: hidden;
+        background-color: $color-secondary;
+        color: $color-primary;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    
+        &:hover {
+            transform: scale($card-hover-scale);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+    
+        &-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: $card-border-radius $card-border-radius 0 0;
+        }
+    
+        &-body {
+            padding: 1.5rem;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+    
+            .card-title {
+                font-size: $title-font-size;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                
+            }
+    
+            .card-text {
+                font-size: $text-font-size;
+                color: $color-primary;
+                flex-grow: 1;
+                margin-bottom: 1rem;
+                .text-custom{
+                    color: $color-primary;
+                }
+            }
+        }
+    }
+    
+
+    // Bouton personnalisé
+    .btn {
+        background-color: $color-secondary;
+        border-radius: 25px;
+        padding: 0.8rem 1.5rem;
+        color: $color-primary;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    
+        &:hover {
+            background-color: lighten($color-primary, 10%);
+            color: $color-tertiary;
+            transform: scale($btn-hover-scale);
+        }
+    }
+    
+}
+
+// Section BTS
+
+.bts{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    p{
+        font-size: $font-size-tiny;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    .redirections{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a{
+            margin: 0 10px;
+            text-decoration: none;
+            color: $color-primary;
+            font-size: $font-size-small;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            &:hover{
+                color: darken($color-primary, 10%);
+            }
+        }
+    }
+}
+
+// Section Contact
+
+.contact{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    .col{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 5rem;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+        
+    }
+    a{
+        color: $color-primary;
+        text-decoration: none;
+        font-size: $font-size-small;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        &:hover{
+            color: darken($color-primary, 10%);
+        }
+    }
+    .btn-contact{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $color-primary;
+        color: $color-secondary;
+        font-weight: 400;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+
+        // Effet au survol
+        &:hover {
+            background-color: darken($color-primary, 10%);
+            color: $color-tertiary;
+        }
+    }
+}
+
+footer{
+    background-color: $color-primary;
+    padding: 2rem 0;
+    h3{
+        color: $color-secondary;
+    }
+    ul{
+        padding-left: 0;
+        li{
+            margin-bottom: 10px;
+        }
+    }
+    a{
+        color: $color-secondary;
+        text-decoration: none;
+    }
+}
+
+// Page Projets
+
+.heading_projets{
+    text-align: center;
+    margin: 2rem 0;
+    min-height: 100vh;
+    .image_projets{
+        width:100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+}
+
+
+.reveal-loaded .reveal [class*="reveal-"]{
+    opacity: 0!important;
+    transform: translateY(-30px)!important;
+    transition: 0s!important;
+}
+
+[class*="reveal-"]{
+    transition: 1s cubic-bezier(.5, 0, 0, 1);
+}
+.reveal-2{
+    transition-delay: .1s;
+}
+
+.reveal-3{
+    transition-delay: .2s;
+}
+
+.reveal-4{
+    transition-delay: .3s;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .reveal [class*="reveal-"]{
+        opacity: 1!important;
+        transform: translateY(0)!important;
+    }
+    [class*="reveal-"]{
+        transition-duration: 0s!important;
+        transition-delay: 0s!important;
+    }
+
+}
+
+//*bouton retour haut de page
+
+#backToTop {
+    display: flex;  
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    background-color: $color-primary; 
+    color: $color-secondary;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    &:hover{
+        background-color: darken($color: $color-primary, $amount: 10%); 
+    }
+}
+
+// Propos
+
+.heading_propos{
+    text-align: center;
+    margin: 2rem 0;
+    height: 80vh;
+    .image_propos{
+        width:100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.profil{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    hr {
+        border-color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    .profil_text{
+        font-size: $font-size-small;
+        color: $color-primary;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6 ;
+    }
+
+}
+
+// Section Competences
+
+.competences {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $color-secondary; 
+
+    h1 {
+        color: $color-primary;
+        margin-bottom: 1rem;
+    }
+
+    hr {
+        border-color: $color-primary;
+        margin-bottom: 2rem;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+
+    .col-md-4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        background: $color-secondary; // Fond blanc pour contraster
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        max-width: 350px;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: $color-primary;
+            margin-top: 10px;
+        }
+    }
+
+    .competence-icon {
+        font-size: 2.5rem;
+        color: $color-primary;
+    }
+
+    .competences-techniques {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f8f9fa;
+
+    h2 {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    hr {
+        border-color: $color-primary;
+        margin-bottom: 2rem;
+    }
+
+    .skill {
+        margin-bottom: 25px;
+    
+        span {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: $color-primary;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+    
+        i {
+            font-size: 1.5rem;
+            color: $color-primary;
+        }
+    
+        .progress {
+            width: 100%; // ou fixe: ex: 400px
+            max-width: 400px; // Pour garder une limite uniforme
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+    
+            .progress-bar {
+                background-color: $color-primary;
+                color: white;
+                text-align: center;
+                line-height: 20px;
+                font-weight: bold;
+                transition: width 1s ease-in-out;
+            }
+        }
+    }
+    
+}
+
+
+.competences-info {
+    padding: 50px 0;
+    h2 {
+        color: $color-primary;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .btn-custom {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $color-primary;
+        color: #EEF7EE;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+            background-color: darken($color-primary, 10%);
+            color: $color-tertiary
+        }
+    }
+}
+
+}
+
+
+.certifications {
+    min-height: 100vh;
+    background-color: $color-secondary;
+    
+
+    h1 {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+}
+
+// Page Veilles
+
+.heading_veille{
+    text-align: center;
+    margin: 2rem 0;
+    min-height: 100vh;
+    .image_veille{
+        width:100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.intro_veille{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    h4{
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+    p{
+        font-size: $font-size-tiny;
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.objectifs_veille {
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-secondary;
+    padding: 4rem 0;
+
+    h1, p {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+            font-size: 1.1rem;
+            color: $color-primary;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            
+            i {
+                color: $color-primary;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}
+
+.veilles_dynamiques{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-secondary;
+    padding: 4rem 0;
+
+    h1, p {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    p{
+        font-size: $font-size-tiny;
+    }
+
+    .veille-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; // Espace entre les cartes
+    }
+}
+
+.veille-card {
+    border-radius: $card-border-radius;
+    box-shadow: $card-shadow;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale($card-hover-scale);
+    }
+
+    .veille-img {
+        border-top-left-radius: $card-border-radius;
+        border-top-right-radius: $card-border-radius;
+        object-fit: cover;
+        height: 200px;
+    }
+
+    .veille-title {
+        font-size: $title-font-size;
+        color: $color-primary;
+    }
+
+    .veille-text {
+        font-size: $text-font-size;
+        color: $color-primary;
+        flex-grow: 1;
+    }
+}
+
+.btn-custom {
+    background-color: $color-primary;
+    color: $color-secondary;
+    border: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($color-primary, 8%);
+        transform: scale($btn-hover-scale);
+    }
+}
+
+
+// Page de certification
+
+.certifications{
+    width: 100%;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $color-secondary; 
+
+    .certifications-icon {
+        font-size: 2.5rem;
+        color: $color-primary;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    .col-md-4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        background: $color-secondary; 
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        max-width: 400px;
+        margin: 10px;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: $color-primary;
+            margin-top: 10px;
+        }
+    }
+}
+.outils_veille {
+    // Style pour le titre h1
+    h1 {
+        padding-bottom: $spacing-medium;
+        color: $color-primary;
+
+        // Style pour le span dans le titre
+        span {
+            position: relative;
+
+            // Animation de la ligne en dégradé
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 100%;
+                height: 3px;
+                background: linear-gradient(90deg, #01330f, #4eb25a, #063714);
+                background-size: 200% 200%;
+                animation: ondule 2s linear infinite;
+            }
+        }
+    }
+
+    // Style pour le bouton personnalisé
+    .btn-custom {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $color-primary;
+        color: $color-tertiary;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+
+        // Effet au survol
+        &:hover {
+            background-color: darken($color-primary, 10%);
+            color: $color-tertiary;
+        }
+    }
+
+    // Animation de la ligne en dégradé
+    @keyframes ondule {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}
+
+.reseaux_veille{
+    padding: 2rem;
+    h1{
+        color: $color-primary;
+        padding-bottom: $spacing-medium;
+    }
+
+    // Style pour le span dans le titre
+    span {
+        position: relative;
+
+        // Animation de la ligne en dégradé
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #01330f, #4eb25a, #063714);
+            background-size: 200% 200%;
+            animation: ondule 2s linear infinite;
+        }
+    }
+
+    // Animation de la ligne en dégradé
+    @keyframes ondule {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}
+
+.parcours-scolaire{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: $color-secondary; 
+
+    h2 {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    hr {
+        border-color: $color-primary;
+        margin-bottom: 2rem;
+    }
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+        list-style: none;
+        margin: 0 auto;
+        max-width: 800px;
+
+        li {
+            position: relative;
+            padding: 20px 0;
+            text-align: left;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: -10px;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                background-color: $color-primary;
+                border-radius: 50%;
+            }
+
+            h4 {
+                font-size: $font-size-medium;
+                color: $color-primary;
+            }
+
+            p {
+                font-size: $font-size-small;
+                color: $color-primary;
+            }
+        }
+    }
+    .timeline-item {
+        margin-bottom: 20px;
+        padding-left: 30px;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: $color-primary;
+            border-radius: 50%;
+        }
+
+        h4 {
+            font-size: $font-size-medium;
+            color: $color-primary;
+        }
+
+        p {
+            font-size: $font-size-small;
+            color: $color-primary;
+        }
+    }
+
+
+}
+
+#contact{
+    width: 100%;
+    min-height: 100vh;
+    background-color: $color-secondary; 
+
+    h1 {
+        color: $color-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    hr {
+        border-color: $color-primary;
+        margin-bottom: 2rem;
+    }
+    label {
+        font-size: $font-size-small;
+        color: $color-primary;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .btn-contact{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $color-primary;
+        color: $color-secondary;
+        font-weight: 400;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+
+        // Effet au survol
+        &:hover {
+            background-color: darken($color-primary, 10%);
+            color: $color-tertiary;
+        }
+    }
+    
+}
