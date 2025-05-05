@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
@@ -12,4 +11,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        manifest: true,
+        outDir: 'public/build',
+    },
+    base: '/build/', // 🔧 Ajoute ce préfixe pour générer des URLs relatives correctes
 });
