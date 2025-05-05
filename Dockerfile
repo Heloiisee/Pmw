@@ -35,12 +35,14 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # 📁 Répertoire de travail
 WORKDIR /var/www
 
+# 📁 Copier le reste du projet
+COPY . .
+
 # 🔁 Pré-copie pour cache Composer
 COPY composer.json composer.lock ./
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# 📁 Copier le reste du projet
-COPY . .
+
 
 # 🧶 Installer les dépendances front + compiler Vite
 RUN npm install
