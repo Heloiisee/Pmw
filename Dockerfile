@@ -43,16 +43,10 @@ COPY composer.json composer.lock ./
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 
-
 # 🧶 Installer les dépendances front + compiler Vite
 RUN npm install
 RUN npm run build
 
-# 🔐 Laravel configuration
-RUN php artisan key:generate && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
 
 # 🗂️ Donner les droits nécessaires
 RUN chown -R www-data:www-data /var/www && \
