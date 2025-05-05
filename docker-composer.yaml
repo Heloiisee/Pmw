@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: PortfolioM
+      DB_USERNAME: postgres
+      DB_PASSWORD: Hachi3334*
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: PortfolioM
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Hachi3334*
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
