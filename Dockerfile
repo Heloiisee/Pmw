@@ -37,6 +37,8 @@ WORKDIR /var/www
 # 📁 Copier les fichiers
 COPY . .
 COPY .env.example .env
+COPY public/images/ public/images/
+
 
 # 🧶 Installer les dépendances PHP
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
