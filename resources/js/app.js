@@ -1,5 +1,6 @@
 import './bootstrap';
-import '../sass/styles.scss';
+import '../css/styles.css';
+import '../css/app.css';
 import '../js/intersectionObserver.js';
 import '../js/script.js';
 
