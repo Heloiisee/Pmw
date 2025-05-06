@@ -35,9 +35,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
 
 # 📁 Copier les fichiers
-
+COPY . .
 COPY .env.example .env
-COPY public/images/ public/images/
 
 
 # 🧶 Installer les dépendances PHP
